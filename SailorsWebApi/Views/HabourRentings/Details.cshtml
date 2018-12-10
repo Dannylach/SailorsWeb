@@ -1,0 +1,58 @@
+﻿@model SailorsWebApi.Models.HabourRenting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HabourRenting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rentTimeStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentTimeStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rentTimeEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentTimeEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rentDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.userName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

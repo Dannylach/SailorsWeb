@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SailorsWebApi.Models.Posts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.postText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userPosting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.userName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.postText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userPosting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.userName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.postId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.postId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.postId })
+        </td>
+    </tr>
+}
+
+</table>

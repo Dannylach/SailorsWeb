@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8fec3727ab754c80a246761a062b4a6e" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="HowDatabaseModel.Documents" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.EquipmentTypes" Width="1.5" PointX="5.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.Functions" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.Posts" Width="1.5" PointX="3.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.SailingEquipment" Width="1.5" PointX="8.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.ScoutRanks" Width="1.5" PointX="12.875" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HowDatabaseModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="HowDatabaseModel.FK__Users__functionI__4BAC3F29" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HowDatabaseModel.HabourRenting" Width="1.5" PointX="7.5" PointY="3.5" />
+        <AssociationConnector Association="HowDatabaseModel.FK__HabourRen__rente__6FE99F9F" />
+        <EntityTypeShape EntityType="HowDatabaseModel.RentingEquipment" Width="1.5" PointX="10.875" PointY="0.75" />
+        <AssociationConnector Association="HowDatabaseModel.FK__Posts__userPosti__02FC7413" />
+        <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__equip__06CD04F7" />
+        <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__rente__05D8E0BE" />
+        <EntityTypeShape EntityType="HowDatabaseModel.HarbourMembers" Width="1.5" PointX="10" PointY="4.5" />
+        <AssociationConnector Association="HowDatabaseModel.FK__HarbourMe__userI__160F4887" />
+        <AssociationConnector Association="HowDatabaseModel.FK__HarbourMe__userS__17036CC0" />
+        <AssociationConnector Association="HowDatabaseModel.FK__SailingEq__equip__2739D489" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

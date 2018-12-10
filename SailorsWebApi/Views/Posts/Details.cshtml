@@ -1,0 +1,58 @@
+﻿@model SailorsWebApi.Models.Posts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Posts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.postText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userPosting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userPosting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.userName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.postId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

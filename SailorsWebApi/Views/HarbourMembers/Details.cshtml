@@ -1,0 +1,50 @@
+﻿@model SailorsWebApi.Models.HarbourMembers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HarbourMembers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userBirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userBirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userScoutNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userScoutNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScoutRanks.scoutRankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScoutRanks.scoutRankName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.memberId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SailorsWebApi.Models.RentingEquipment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rentTimeStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rentTimeEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SailingEquipment.equipmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.userName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.rentTimeStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rentTimeEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SailingEquipment.equipmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.userName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.rentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.rentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.rentId })
+        </td>
+    </tr>
+}
+
+</table>
