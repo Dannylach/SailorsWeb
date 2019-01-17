@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,18 +55,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,6 +122,33 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.0.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.2.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.3.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc5.1.3.0\lib\net45\Unity.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.WebApi, Version=5.3.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.WebAPI.5.3.0\lib\net45\Unity.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -176,30 +194,37 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\RentingServices.cs" />
+    <Compile Include="BLL\UsersServices.cs" />
     <Compile Include="BLL_Interfaces\IRentingServices.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="BLL_Interfaces\IUsersServices.cs" />
     <Compile Include="Controllers\EquipmentTypesController.cs" />
     <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HabourRentingsController.cs" />
-    <Compile Include="Controllers\HarbourMembersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RentingEquipmentsController.cs" />
     <Compile Include="Controllers\SailingEquipmentsController.cs" />
-    <Compile Include="Controllers\ScoutRanksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebApiController.cs" />
-    <Compile Include="DAL\RentingRepository.cs" />
+    <Compile Include="DAL\EquipmentRentRepository.cs" />
+    <Compile Include="DAL\EquipmentRepository.cs" />
+    <Compile Include="DAL\EquipmentTypeRepository.cs" />
+    <Compile Include="DAL\FunctionsRepository.cs" />
+    <Compile Include="DAL\HarbourRentRepository.cs" />
     <Compile Include="DAL\Repository.cs" />
-    <Compile Include="DAL_Interfaces\IRentingRepository.cs" />
+    <Compile Include="DAL\UserRepository.cs" />
+    <Compile Include="DAL_Interfaces\IEquipmentRentRepository.cs" />
+    <Compile Include="DAL_Interfaces\IEquipmentRepository.cs" />
+    <Compile Include="DAL_Interfaces\IEquipmentTypeRepository.cs" />
+    <Compile Include="DAL_Interfaces\IFunctionsRepository.cs" />
+    <Compile Include="DAL_Interfaces\IHarbourRentRepository.cs" />
     <Compile Include="DAL_Interfaces\IRepository.cs" />
+    <Compile Include="DAL_Interfaces\IUserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Documents.cs">
-      <DependentUpon>SailorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquipmentTypes.cs">
       <DependentUpon>SailorsModel.tt</DependentUpon>
@@ -208,9 +233,6 @@
       <DependentUpon>SailorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HabourRenting.cs">
-      <DependentUpon>SailorsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HarbourMembers.cs">
       <DependentUpon>SailorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Posts.cs">
@@ -237,9 +259,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SailorsModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ScoutRanks.cs">
-      <DependentUpon>SailorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
       <DependentUpon>SailorsModel.tt</DependentUpon>
@@ -316,16 +335,6 @@
     <Content Include="Views\Functions\Details.cshtml" />
     <Content Include="Views\Functions\Edit.cshtml" />
     <Content Include="Views\Functions\Index.cshtml" />
-    <Content Include="Views\HarbourMembers\Create.cshtml" />
-    <Content Include="Views\HarbourMembers\Delete.cshtml" />
-    <Content Include="Views\HarbourMembers\Details.cshtml" />
-    <Content Include="Views\HarbourMembers\Edit.cshtml" />
-    <Content Include="Views\HarbourMembers\Index.cshtml" />
-    <Content Include="Views\ScoutRanks\Create.cshtml" />
-    <Content Include="Views\ScoutRanks\Delete.cshtml" />
-    <Content Include="Views\ScoutRanks\Details.cshtml" />
-    <Content Include="Views\ScoutRanks\Edit.cshtml" />
-    <Content Include="Views\ScoutRanks\Index.cshtml" />
     <Content Include="Views\SailingEquipments\Create.cshtml" />
     <Content Include="Views\SailingEquipments\Delete.cshtml" />
     <Content Include="Views\SailingEquipments\Details.cshtml" />
@@ -351,11 +360,6 @@
     <Content Include="Views\EquipmentTypes\Details.cshtml" />
     <Content Include="Views\EquipmentTypes\Edit.cshtml" />
     <Content Include="Views\EquipmentTypes\Index.cshtml" />
-    <Content Include="Views\Documents\Create.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
-    <Content Include="Views\Documents\Details.cshtml" />
-    <Content Include="Views\Documents\Edit.cshtml" />
-    <Content Include="Views\Documents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

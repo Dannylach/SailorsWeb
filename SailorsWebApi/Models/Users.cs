@@ -20,7 +20,6 @@ namespace SailorsWebApi.Models
             this.HabourRenting = new HashSet<HabourRenting>();
             this.Posts = new HashSet<Posts>();
             this.RentingEquipment = new HashSet<RentingEquipment>();
-            this.HarbourMembers = new HashSet<HarbourMembers>();
         }
     
         public int userId { get; set; }
@@ -29,6 +28,8 @@ namespace SailorsWebApi.Models
         public string userEmail { get; set; }
         public Nullable<int> phoneNumber { get; set; }
         public Nullable<int> functionId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
     
         public virtual Functions Functions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,7 +38,5 @@ namespace SailorsWebApi.Models
         public virtual ICollection<Posts> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RentingEquipment> RentingEquipment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HarbourMembers> HarbourMembers { get; set; }
     }
 }

@@ -25,15 +25,12 @@ namespace SailorsWebApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<EquipmentTypes> EquipmentTypes { get; set; }
         public virtual DbSet<Functions> Functions { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<SailingEquipment> SailingEquipment { get; set; }
-        public virtual DbSet<ScoutRanks> ScoutRanks { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<HabourRenting> HabourRenting { get; set; }
         public virtual DbSet<RentingEquipment> RentingEquipment { get; set; }
-        public virtual DbSet<HarbourMembers> HarbourMembers { get; set; }
     }
 }

@@ -50,6 +50,10 @@ namespace SailorsWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
+                var usedId = db.Functions.Select(x => x.functionId).ToList();
+                var lastId = usedId.Last();
+                var availableId = lastId + 1;
+                functions.functionId = availableId;
                 db.Functions.Add(functions);
                 db.SaveChanges();
                 return RedirectToAction("Index");

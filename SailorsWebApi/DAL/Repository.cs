@@ -23,21 +23,14 @@ namespace SailorsWebApi.DAL
             Context = new HowDatabaseEntities();
         }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
             return Context.Set<T>().ToList();
         }
 
         public void Save()
         {
-            try
-            {
                 Context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
 
         public void Update(T item)

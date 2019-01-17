@@ -10,7 +10,7 @@ namespace SailorsWebApi.DAL_Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
         void Save();
         void Update(T item);
     }

@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HowDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Documents">
-          <Key>
-            <PropertyRef Name="documentId" />
-          </Key>
-          <Property Name="documentId" Type="int" Nullable="false" />
-          <Property Name="documentName" Type="nchar" MaxLength="255" />
-          <Property Name="documentType" Type="nchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="EquipmentTypes">
           <Key>
             <PropertyRef Name="typeId" />
@@ -38,16 +30,6 @@
           <Property Name="rentTimeEnd" Type="date" />
           <Property Name="rentName" Type="nchar" MaxLength="255" />
           <Property Name="rentDescription" Type="nchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="HarbourMembers">
-          <Key>
-            <PropertyRef Name="memberId" />
-          </Key>
-          <Property Name="memberId" Type="int" Nullable="false" />
-          <Property Name="userId" Type="int" />
-          <Property Name="userScoutRank" Type="int" />
-          <Property Name="userBirthDate" Type="date" />
-          <Property Name="userScoutNumber" Type="nchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -78,13 +60,6 @@
           <Property Name="equipmentName" Type="nchar" MaxLength="255" />
           <Property Name="equipmentType" Type="int" />
         </EntityType>
-        <EntityType Name="ScoutRanks">
-          <Key>
-            <PropertyRef Name="scoutRankId" />
-          </Key>
-          <Property Name="scoutRankId" Type="int" Nullable="false" />
-          <Property Name="scoutRankName" Type="nchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="userId" />
@@ -95,6 +70,8 @@
           <Property Name="userEmail" Type="nchar" MaxLength="255" />
           <Property Name="phoneNumber" Type="int" />
           <Property Name="functionId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__HabourRen__rente__6FE99F9F">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -105,30 +82,6 @@
             </Principal>
             <Dependent Role="HabourRenting">
               <PropertyRef Name="renterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HarbourMe__userI__160F4887">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="HarbourMembers" Type="Self.HarbourMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="HarbourMembers">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HarbourMe__userS__17036CC0">
-          <End Role="ScoutRanks" Type="Self.ScoutRanks" Multiplicity="0..1" />
-          <End Role="HarbourMembers" Type="Self.HarbourMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ScoutRanks">
-              <PropertyRef Name="scoutRankId" />
-            </Principal>
-            <Dependent Role="HarbourMembers">
-              <PropertyRef Name="userScoutRank" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,27 +146,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HowDatabaseModelStoreContainer">
-          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HabourRenting" EntityType="Self.HabourRenting" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HarbourMembers" EntityType="Self.HarbourMembers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RentingEquipment" EntityType="Self.RentingEquipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SailingEquipment" EntityType="Self.SailingEquipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ScoutRanks" EntityType="Self.ScoutRanks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__HabourRen__rente__6FE99F9F" Association="Self.FK__HabourRen__rente__6FE99F9F">
             <End Role="Users" EntitySet="Users" />
             <End Role="HabourRenting" EntitySet="HabourRenting" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HarbourMe__userI__160F4887" Association="Self.FK__HarbourMe__userI__160F4887">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="HarbourMembers" EntitySet="HarbourMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HarbourMe__userS__17036CC0" Association="Self.FK__HarbourMe__userS__17036CC0">
-            <End Role="ScoutRanks" EntitySet="ScoutRanks" />
-            <End Role="HarbourMembers" EntitySet="HarbourMembers" />
           </AssociationSet>
           <AssociationSet Name="FK__Posts__userPosti__02FC7413" Association="Self.FK__Posts__userPosti__02FC7413">
             <End Role="Users" EntitySet="Users" />
@@ -240,21 +182,12 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HowDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Documents">
-          <Key>
-            <PropertyRef Name="documentId" />
-          </Key>
-          <Property Name="documentId" Type="Int32" Nullable="false" />
-          <Property Name="documentName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="documentType" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="EquipmentTypes">
           <Key>
             <PropertyRef Name="typeId" />
           </Key>
           <Property Name="typeId" Type="Int32" Nullable="false" />
           <Property Name="typeName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="maxUsers" Type="Int32" />
           <NavigationProperty Name="SailingEquipment" Relationship="HowDatabaseModel.FK__SailingEq__equip__2739D489" FromRole="EquipmentTypes" ToRole="SailingEquipment" />
         </EntityType>
         <EntityType Name="Functions">
@@ -287,14 +220,6 @@
           <NavigationProperty Name="RentingEquipment" Relationship="HowDatabaseModel.FK__RentingEq__equip__06CD04F7" FromRole="SailingEquipment" ToRole="RentingEquipment" />
           <NavigationProperty Name="EquipmentTypes" Relationship="HowDatabaseModel.FK__SailingEq__equip__2739D489" FromRole="SailingEquipment" ToRole="EquipmentTypes" />
         </EntityType>
-        <EntityType Name="ScoutRanks">
-          <Key>
-            <PropertyRef Name="scoutRankId" />
-          </Key>
-          <Property Name="scoutRankId" Type="Int32" Nullable="false" />
-          <Property Name="scoutRankName" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="HarbourMembers" Relationship="HowDatabaseModel.FK__HarbourMe__userS__17036CC0" FromRole="ScoutRanks" ToRole="HarbourMembers" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="userId" />
@@ -309,7 +234,8 @@
           <NavigationProperty Name="HabourRenting" Relationship="HowDatabaseModel.FK__HabourRen__rente__6FE99F9F" FromRole="Users" ToRole="HabourRenting" />
           <NavigationProperty Name="Posts" Relationship="HowDatabaseModel.FK__Posts__userPosti__02FC7413" FromRole="Users" ToRole="Posts" />
           <NavigationProperty Name="RentingEquipment" Relationship="HowDatabaseModel.FK__RentingEq__rente__05D8E0BE" FromRole="Users" ToRole="RentingEquipment" />
-          <NavigationProperty Name="HarbourMembers" Relationship="HowDatabaseModel.FK__HarbourMe__userI__160F4887" FromRole="Users" ToRole="HarbourMembers" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Users__functionI__4BAC3F29">
           <End Role="Functions" Type="Self.Functions" Multiplicity="0..1" />
@@ -324,12 +250,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HowDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Documents" EntityType="Self.Documents" />
           <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentTypes" />
           <EntitySet Name="Functions" EntityType="Self.Functions" />
           <EntitySet Name="Posts" EntityType="Self.Posts" />
           <EntitySet Name="SailingEquipment" EntityType="Self.SailingEquipment" />
-          <EntitySet Name="ScoutRanks" EntityType="Self.ScoutRanks" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK__Users__functionI__4BAC3F29" Association="Self.FK__Users__functionI__4BAC3F29">
             <End Role="Functions" EntitySet="Functions" />
@@ -352,15 +276,6 @@
           <AssociationSet Name="FK__RentingEq__rente__05D8E0BE" Association="HowDatabaseModel.FK__RentingEq__rente__05D8E0BE">
             <End Role="Users" EntitySet="Users" />
             <End Role="RentingEquipment" EntitySet="RentingEquipment" />
-          </AssociationSet>
-          <EntitySet Name="HarbourMembers" EntityType="HowDatabaseModel.HarbourMembers" />
-          <AssociationSet Name="FK__HarbourMe__userI__160F4887" Association="HowDatabaseModel.FK__HarbourMe__userI__160F4887">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="HarbourMembers" EntitySet="HarbourMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HarbourMe__userS__17036CC0" Association="HowDatabaseModel.FK__HarbourMe__userS__17036CC0">
-            <End Role="ScoutRanks" EntitySet="ScoutRanks" />
-            <End Role="HarbourMembers" EntitySet="HarbourMembers" />
           </AssociationSet>
           <AssociationSet Name="FK__SailingEq__equip__2739D489" Association="HowDatabaseModel.FK__SailingEq__equip__2739D489">
             <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
@@ -439,42 +354,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="HarbourMembers">
-          <Key>
-            <PropertyRef Name="memberId" />
-          </Key>
-          <Property Name="memberId" Type="Int32" Nullable="false" />
-          <Property Name="userId" Type="Int32" />
-          <Property Name="userScoutRank" Type="Int32" />
-          <Property Name="userBirthDate" Type="DateTime" Precision="0" />
-          <Property Name="userScoutNumber" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="HowDatabaseModel.FK__HarbourMe__userI__160F4887" FromRole="HarbourMembers" ToRole="Users" />
-          <NavigationProperty Name="ScoutRanks" Relationship="HowDatabaseModel.FK__HarbourMe__userS__17036CC0" FromRole="HarbourMembers" ToRole="ScoutRanks" />
-        </EntityType>
-        <Association Name="FK__HarbourMe__userI__160F4887">
-          <End Type="HowDatabaseModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="HowDatabaseModel.HarbourMembers" Role="HarbourMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="HarbourMembers">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HarbourMe__userS__17036CC0">
-          <End Type="HowDatabaseModel.ScoutRanks" Role="ScoutRanks" Multiplicity="0..1" />
-          <End Type="HowDatabaseModel.HarbourMembers" Role="HarbourMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ScoutRanks">
-              <PropertyRef Name="scoutRankId" />
-            </Principal>
-            <Dependent Role="HarbourMembers">
-              <PropertyRef Name="userScoutRank" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SailingEq__equip__2739D489">
           <End Type="HowDatabaseModel.EquipmentTypes" Role="EquipmentTypes" Multiplicity="0..1" />
           <End Type="HowDatabaseModel.SailingEquipment" Role="SailingEquipment" Multiplicity="*" />
@@ -493,21 +372,11 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HowDatabaseModelStoreContainer" CdmEntityContainer="HowDatabaseEntities">
-          <EntitySetMapping Name="Documents">
-            <EntityTypeMapping TypeName="HowDatabaseModel.Documents">
-              <MappingFragment StoreEntitySet="Documents">
-                <ScalarProperty Name="documentId" ColumnName="documentId" />
-                <ScalarProperty Name="documentName" ColumnName="documentName" />
-                <ScalarProperty Name="documentType" ColumnName="documentType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EquipmentTypes">
             <EntityTypeMapping TypeName="HowDatabaseModel.EquipmentTypes">
               <MappingFragment StoreEntitySet="EquipmentTypes">
                 <ScalarProperty Name="typeId" ColumnName="typeId" />
                 <ScalarProperty Name="typeName" ColumnName="typeName" />
-                <ScalarProperty Name="maxUsers" ColumnName="maxUsers" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -540,17 +409,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ScoutRanks">
-            <EntityTypeMapping TypeName="HowDatabaseModel.ScoutRanks">
-              <MappingFragment StoreEntitySet="ScoutRanks">
-                <ScalarProperty Name="scoutRankId" ColumnName="scoutRankId" />
-                <ScalarProperty Name="scoutRankName" ColumnName="scoutRankName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="HowDatabaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="userPassword" ColumnName="userPassword" />
@@ -580,17 +443,6 @@
                 <ScalarProperty Name="equipmentId" ColumnName="equipmentId" />
                 <ScalarProperty Name="renterId" ColumnName="renterId" />
                 <ScalarProperty Name="rentId" ColumnName="rentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HarbourMembers">
-            <EntityTypeMapping TypeName="HowDatabaseModel.HarbourMembers">
-              <MappingFragment StoreEntitySet="HarbourMembers">
-                <ScalarProperty Name="userScoutNumber" ColumnName="userScoutNumber" />
-                <ScalarProperty Name="userBirthDate" ColumnName="userBirthDate" />
-                <ScalarProperty Name="userScoutRank" ColumnName="userScoutRank" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="memberId" ColumnName="memberId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
