@@ -36,7 +36,8 @@ namespace SailorsWebApi.Controllers
                 if(response.ResultType) return Ok(response);
                 return Content(HttpStatusCode.BadRequest, response);
         }
-
+        
+        //TODO It is duplicated function
         [Route("api/webapi/getusersdatabyname")]
         [HttpGet]
         public IHttpActionResult GetUserDataByName(string userName)
@@ -85,7 +86,7 @@ namespace SailorsWebApi.Controllers
 
         [HttpGet]
         [Route("api/webapi/adduser")]
-        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, int phoneNumber, int functionId, string name, string surname)
+        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, int phoneNumber, int functionId = 1, string name, string surname)
         {
             var response = usersServices.AddUser(userName, userPassword, userEmail, phoneNumber, functionId, name, surname);
             if (response.ResultType) return Ok(response);
