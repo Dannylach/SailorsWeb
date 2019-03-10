@@ -66,9 +66,9 @@ namespace SailorsWebApi.DAL
             Save();
         }
 
-        public void DeleteRent(int deleteId)
+        public void DeleteRent(RentingEquipment delete)
         {
-            equipmentRentings.Remove(equipmentRentings.Find(deleteId));
+            equipmentRentings.Remove(delete);
         }
         
         public bool IsRent(int rentId)

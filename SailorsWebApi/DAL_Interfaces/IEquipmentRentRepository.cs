@@ -17,6 +17,6 @@ namespace SailorsWebApi.DAL_Interfaces
         bool IsRent(int rentId);
         void RentEquipment(RentingEquipment newRenting);
         void RentEquipment(int userId, DateTime startDate, DateTime endDate, int equipmentId);
-        void DeleteRent(int deleteId);
+        void DeleteRent(RentingEquipment delete);
     }
 }

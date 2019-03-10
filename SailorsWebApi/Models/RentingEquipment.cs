@@ -19,6 +19,8 @@ namespace SailorsWebApi.Models
         public Nullable<int> equipmentId { get; set; }
         public Nullable<System.DateTime> rentTimeStart { get; set; }
         public Nullable<System.DateTime> rentTimeEnd { get; set; }
+        public string rentName { get; set; }
+        public string rentDescription { get; set; }
     
         public virtual SailingEquipment SailingEquipment { get; set; }
         public virtual Users Users { get; set; }

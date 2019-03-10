@@ -49,7 +49,7 @@ namespace SailorsWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd")] RentingEquipment rentingEquipment)
+        public ActionResult Create([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd,rentName,rentDescription")] RentingEquipment rentingEquipment)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace SailorsWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd")] RentingEquipment rentingEquipment)
+        public ActionResult Edit([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd,rentName,rentDescription")] RentingEquipment rentingEquipment)
         {
             if (ModelState.IsValid)
             {

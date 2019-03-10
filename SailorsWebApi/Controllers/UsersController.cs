@@ -48,14 +48,10 @@ namespace SailorsWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userName,userPassword,userEmail,phoneNumber,functionId")] Users users)
+        public ActionResult Create([Bind(Include = "userId,userName,passwordHash,email,emailConfirmed,securityStamp,phoneNumber,phoneNumberConfirmed,twoFactorEnabled,LockoutEnadDateUtc,accessFailedCount,functionId,Name,Surname")] Users users)
         {
             if (ModelState.IsValid)
             {
-                var usedId = db.Users.Select(x => x.userId).ToList();
-                var lastId = usedId.Last();
-                var availableId = lastId + 1;
-                users.userId = availableId;
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,7 +82,7 @@ namespace SailorsWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userId,userName,userPassword,userEmail,phoneNumber,functionId")] Users users)
+        public ActionResult Edit([Bind(Include = "userId,userName,passwordHash,email,emailConfirmed,securityStamp,phoneNumber,phoneNumberConfirmed,twoFactorEnabled,LockoutEnadDateUtc,accessFailedCount,functionId,Name,Surname")] Users users)
         {
             if (ModelState.IsValid)
             {

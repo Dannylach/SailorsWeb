@@ -14,9 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.typeName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.maxUsers)
-        </th>
         <th></th>
     </tr>
 
@@ -24,9 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.typeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.maxUsers)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.typeId }) |

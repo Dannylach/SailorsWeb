@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using SailorsWebApi.BLL_Interfaces;
 using SailorsWebApi.DAL_Interfaces;
 using SailorsWebApi.Models;
@@ -41,7 +42,7 @@ namespace SailorsWebApi.BLL
                         name = user.Name?.Trim(' '),
                         surname = user.Surname?.Trim(' '),
                         userName = user.userName.Trim(' '),
-                        userEmail = user.userEmail?.Trim(' '),
+                        userEmail = user.email?.Trim(' '),
                         user.phoneNumber,
                         function
                     };
@@ -146,7 +147,7 @@ namespace SailorsWebApi.BLL
                     name = user.Name?.Trim(' '),
                     surname = user.Surname?.Trim(' '),
                     userName = user.userName.Trim(' '),
-                    userEmail = user.userEmail?.Trim(' '),
+                    userEmail = user.email?.Trim(' '),
                     user.phoneNumber,
                     function
                 };
@@ -170,7 +171,7 @@ namespace SailorsWebApi.BLL
                     name = user.Name?.Trim(' '),
                     surname = user.Surname?.Trim(' '),
                     userName = user.userName.Trim(' '),
-                    userEmail = user.userEmail?.Trim(' '),
+                    userEmail = user.email?.Trim(' '),
                     user.phoneNumber,
                     function
                 };
@@ -211,7 +212,7 @@ namespace SailorsWebApi.BLL
 
         #region AddFunctions
 
-        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, int phoneNumber, int functionId, string name, string surname)
+        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, string phoneNumber, int functionId, string name, string surname)
         {
             try
             {
@@ -219,8 +220,8 @@ namespace SailorsWebApi.BLL
                 {
                     userId = GetFreeId(),
                     userName = userName,
-                    userPassword = userPassword,
-                    userEmail = userEmail,
+                    passwordHash = userPassword,
+                    email = userEmail,
                     phoneNumber = phoneNumber,
                     functionId = functionId,
                     Name = name,
@@ -254,7 +255,7 @@ namespace SailorsWebApi.BLL
 
         #region UpdateFunctions
 
-        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userEmail, int phoneNumber, int functionId, string name, string surname)
+        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userEmail, string phoneNumber, int functionId, string name, string surname)
         {
             try
             {
@@ -262,7 +263,7 @@ namespace SailorsWebApi.BLL
                 {
                     userId = userId,
                     userName = userName,
-                    userEmail = userEmail,
+                    email = userEmail,
                     phoneNumber = phoneNumber,
                     functionId = functionId,
                     Name = name,
@@ -305,7 +306,8 @@ namespace SailorsWebApi.BLL
         {
             try
             {
-                userRepository.DeleteUser(userName);
+                var userToDel = userRepository.GetUserByName(userName);
+                userRepository.DeleteUser(userToDel);
                 userRepository.Save();
                 return new ResponseWrapper<object>("OK", true);
             }
@@ -347,7 +349,17 @@ namespace SailorsWebApi.BLL
             }
             return lastId + 1;
         }
-        
+
+        #endregion
+
+        #region Authorization
+
+        public ResponseWrapper<object> Login(Users contact)
+        {
+            var cookie = userRepository.Login(contact);
+            return cookie != null? new ResponseWrapper<object>(cookie, true) : new ResponseWrapper<object>("Wrong user name or password.", false);
+        }
+
         #endregion
     }
 }

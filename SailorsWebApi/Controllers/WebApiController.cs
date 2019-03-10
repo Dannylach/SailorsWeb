@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
 using SailorsWebApi.BLL_Interfaces;
 using SailorsWebApi.Models;
@@ -16,6 +19,42 @@ namespace SailorsWebApi.Controllers
             usersServices = userServices;
             rentingServices = rentingService;
         }
+
+        #region Auth
+        /*
+        [HttpPost]
+        public IHttpActionResult Login(Users contact)
+        {
+            bool validEmail = db.Contacts.Any(x => x.Email == contact.Email);
+
+            if (!validEmail)
+            {
+                return RedirectToAction("Login");
+            }
+
+            string password = db.Contacts.Where(x => x.Email == loginForm.Email)
+                .Select(x => x.Password)
+                .Single();
+
+            bool passwordMatches = Crypto.VerifyHashedPassword(password, loginForm.Password);
+
+            if (!passwordMatches)
+            {
+                return RedirectToAction("Login");
+            }
+
+            string authId = Guid.NewGuid().ToString();
+
+            Session["AuthID"] = authId;
+
+            var cookie = new HttpCookie("AuthID");
+            cookie.Value = authId;
+            Response.Cookies.Add(cookie);
+
+            return RedirectToAction("Private");
+        }
+        */
+        #endregion
 
         #region Users
 
@@ -86,7 +125,7 @@ namespace SailorsWebApi.Controllers
 
         [HttpGet]
         [Route("api/webapi/adduser")]
-        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, int phoneNumber, int functionId = 1, string name, string surname)
+        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, string phoneNumber, string name, string surname, int functionId = 1)
         {
             var response = usersServices.AddUser(userName, userPassword, userEmail, phoneNumber, functionId, name, surname);
             if (response.ResultType) return Ok(response);
@@ -95,7 +134,7 @@ namespace SailorsWebApi.Controllers
 
         [HttpGet]
         [Route("api/webapi/updateuser")]
-        public IHttpActionResult UpdateUser(int userId, string userName, string userEmail, int phoneNumber, int functionId, string name, string surname)
+        public IHttpActionResult UpdateUser(int userId, string userName, string userEmail, string phoneNumber, int functionId, string name, string surname)
         {
             var response = usersServices.UpdateUser(userId, userName, userEmail, phoneNumber, functionId, name, surname);
             if (response.ResultType) return Ok(response);

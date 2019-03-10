@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8fec3727ab754c80a246761a062b4a6e" Name="Diagram1" ZoomLevel="153">
+      <Diagram DiagramId="8fec3727ab754c80a246761a062b4a6e" Name="Diagram1" ZoomLevel="167">
         <EntityTypeShape EntityType="HowDatabaseModel.EquipmentTypes" Width="1.5" PointX="7.375" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HowDatabaseModel.Functions" Width="1.5" PointX="1" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="HowDatabaseModel.Posts" Width="1.5" PointX="1" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HowDatabaseModel.SailingEquipment" Width="1.5" PointX="7.375" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HowDatabaseModel.Users" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <AssociationConnector Association="HowDatabaseModel.FK__Users__functionI__4BAC3F29" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HowDatabaseModel.HabourRenting" Width="1.5" PointX="5.25" PointY="3.5" />
-        <AssociationConnector Association="HowDatabaseModel.FK__HabourRen__rente__6FE99F9F" />
-        <EntityTypeShape EntityType="HowDatabaseModel.RentingEquipment" Width="1.5" PointX="5.25" PointY="1" />
-        <AssociationConnector Association="HowDatabaseModel.FK__Posts__userPosti__02FC7413" />
+        <EntityTypeShape EntityType="HowDatabaseModel.HabourRenting" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="HowDatabaseModel.RentingEquipment" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__equip__06CD04F7" />
-        <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__rente__05D8E0BE" />
         <AssociationConnector Association="HowDatabaseModel.FK__SailingEq__equip__2739D489" />
+        <EntityTypeShape EntityType="HowDatabaseModel.Users" Width="1.5" PointX="3.25" PointY="1" />
+        <AssociationConnector Association="HowDatabaseModel.FK__Users__functionI__55F4C372" />
+        <AssociationConnector Association="HowDatabaseModel.FK__HabourRen__rente__56E8E7AB" />
+        <AssociationConnector Association="HowDatabaseModel.FK__Posts__userPosti__540C7B00" />
+        <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__rente__5AB9788F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

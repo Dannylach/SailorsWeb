@@ -29,8 +29,8 @@ namespace SailorsWebApi.Models
         public virtual DbSet<Functions> Functions { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<SailingEquipment> SailingEquipment { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<HabourRenting> HabourRenting { get; set; }
         public virtual DbSet<RentingEquipment> RentingEquipment { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

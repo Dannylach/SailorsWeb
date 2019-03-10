@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Web;
+using System.Web.Helpers;
 using SailorsWebApi.DAL_Interfaces;
 using SailorsWebApi.Models;
 
@@ -48,14 +50,42 @@ namespace SailorsWebApi.DAL
 
         #endregion
 
+        public HttpCookie Login(Users contact)
+        {
+            bool validEmail = users.Any(x => x.email == contact.email);
+
+            if (!validEmail)
+            {
+                return null;
+            }
+
+            string password = users.Where(x => x.email == contact.email)
+                .Select(x => x.passwordHash)
+                .Single();
+
+            bool passwordMatches = Crypto.VerifyHashedPassword(password, contact.passwordHash);
+
+            if (!passwordMatches)
+            {
+                return null;
+            }
+
+            string authId = Guid.NewGuid().ToString();
+            
+            var cookie = new HttpCookie("AuthID");
+            cookie.Value = authId;
+
+            return cookie;
+        }
+
         public void AddUser(Users user)
         {
             users.Add(user);
         }
 
-        public void DeleteUser(string userName)
+        public void DeleteUser(Users user)
         {
-            users.Remove(users.Find(userName));
+            users.Remove(user);
         }
         
         public bool IsUser(int userId)

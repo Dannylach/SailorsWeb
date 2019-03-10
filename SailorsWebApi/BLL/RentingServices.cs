@@ -35,32 +35,36 @@ namespace SailorsWebApi.BLL
                 var getAllHarbourRentings = harbourRentRepository.GetHarbourRentings();
                 var getAllEquipmentRentings = equipmentRentRepository.GetEquipmentRentings();
                 var resultList = new List<object>();
+                var date = new DateTime();
 
-                if(getAllHarbourRentings != null)
-                foreach (var rentings in getAllHarbourRentings)
-                {
-                    var instance = new
+                if (getAllHarbourRentings != null)
+                    foreach (var rentings in getAllHarbourRentings)
                     {
-                        rentings.rentId,
-                        rentingName = rentings.rentName.Trim(' '),
-                        rentStart = rentings.rentTimeStart.ToString(),
-                        rentEnd = rentings.rentTimeEnd.ToString(),
-                    };
-                    resultList.Add(instance);
-                }
+                        var startDate = (DateTime) rentings.rentTimeStart;
+                        var endDate = (DateTime)rentings.rentTimeEnd;
 
-                if(getAllEquipmentRentings != null)
-                foreach (var rentings in getAllEquipmentRentings)
-                {
-                    var instance = new
+                        var instance = new
+                        {
+                            id = rentings.rentId,
+                            start = startDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            end = endDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            title = rentings.rentName.Trim(' ')
+                        };
+                        resultList.Add(instance);
+                    }
+
+                if (getAllEquipmentRentings != null)
+                    foreach (var rentings in getAllEquipmentRentings)
                     {
-                        renter = rentings.renterId != null ? userRepository.GetUserById(rentings.renterId).userName.Trim(' ') : null,
-                        rentStart = rentings.rentTimeStart.ToString(),
-                        rentEnd = rentings.rentTimeEnd.ToString(),
-                        equipmentType = equipmentTypeRepository.GetById(rentings.equipmentId).Trim(' ')
-                    };
-                    resultList.Add(instance);
-                }
+                        var instance = new
+                        {
+                            id = rentings.rentId,
+                            start = rentings.rentTimeStart.ToString(),
+                            end = rentings.rentTimeEnd.ToString(),
+                            title = "Rezerwacja " + equipmentRepository.GetById(rentings.equipmentId).Trim(' ')
+                        };
+                        resultList.Add(instance);
+                    }
 
                 return new ResponseWrapper<object>(resultList, true);
             }
@@ -84,10 +88,14 @@ namespace SailorsWebApi.BLL
                 {
                     var instance = new
                     {
-                        rentings.rentId,
-                        rentingName = rentings.rentName.Trim(' '),
-                        rentStart = rentings.rentTimeStart.ToString(),
-                        rentEnd = rentings.rentTimeEnd.ToString(),
+                        id = rentings.rentId,
+                        renter = rentings.renterId != null
+                            ? userRepository.GetUserById(rentings.renterId).userName.Trim(' ')
+                            : null,
+                        start = rentings.rentTimeStart.ToString(),
+                        end = rentings.rentTimeEnd.ToString(),
+                        name = rentings.rentName.Trim(' '),
+                        type = 0
                     };
                     resultList.Add(instance);
                 }
@@ -104,16 +112,19 @@ namespace SailorsWebApi.BLL
         {
             try
             {
-                var renting = harbourRentRepository.GetHarbourRentingById(rentingId);
+                var rentings = harbourRentRepository.GetHarbourRentingById(rentingId);
 
-                if (renting == null) return new ResponseWrapper<object>("Error 404: No such record", false);
+                if (rentings == null) return new ResponseWrapper<object>("Error 404: No such record", false);
                 var instance = new
                 {
-                    rentingName = renting.rentName.Trim(' '),
-                    renter = renting.renterId != null ? userRepository.GetUserById(renting.renterId).userName.Trim(' ') : null,
-                    rentStart = renting.rentTimeStart.ToString(),
-                    rentEnd = renting.rentTimeEnd.ToString(),
-                    rentDescription = renting.rentDescription.Replace("  ", "")
+                    id = rentings.rentId,
+                    renter = rentings.renterId != null
+                        ? userRepository.GetUserById(rentings.renterId).userName.Trim(' ')
+                        : null,
+                    start = rentings.rentTimeStart.ToString(),
+                    end = rentings.rentTimeEnd.ToString(),
+                    name = rentings.rentName.Trim(' '),
+                    description = rentings.rentDescription
                 };
 
                 return new ResponseWrapper<object>(instance, true);
@@ -440,7 +451,7 @@ namespace SailorsWebApi.BLL
                     rentTimeStart = DateTime.Parse(startDate),
                     rentTimeEnd = DateTime.Parse(endDate),
                     equipmentId = equipmentId,
-                    rentId = GetEquipmentRentFreeId()
+                    rentId = rentId
                 };
 
                 equipmentRentRepository.Update(renting);
@@ -518,8 +529,9 @@ namespace SailorsWebApi.BLL
             try
             {
                 if (!equipmentRentRepository.IsRent(rentId)) return new ResponseWrapper<object>("Error 404: No such record", false);
-                harbourRentRepository.DeleteRent(rentId);
-                harbourRentRepository.Save();
+                var rent = equipmentRentRepository.GetEquipmentRentingById(rentId);
+                equipmentRentRepository.DeleteRent(rent);
+                equipmentRentRepository.Save();
                 return new ResponseWrapper<object>("OK", true);
             }
             catch (Exception e)

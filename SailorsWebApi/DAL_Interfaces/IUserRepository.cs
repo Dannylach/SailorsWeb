@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using SailorsWebApi.Models;
 
 namespace SailorsWebApi.DAL_Interfaces
@@ -14,8 +15,9 @@ namespace SailorsWebApi.DAL_Interfaces
         Users GetUserById(int userId);
         Users GetUserById(int? userId);
         Users GetUserByName(string userName);
+        HttpCookie Login(Users contact);
         void AddUser(Users user);
-        void DeleteUser(string userNsame);
+        void DeleteUser(Users user);
         bool IsUser(int userId);
         bool IsUser(string userName);
 

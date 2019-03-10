@@ -15,16 +15,34 @@
             @Html.DisplayNameFor(model => model.userName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userPassword)
+            @Html.DisplayNameFor(model => model.email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userEmail)
+            @Html.DisplayNameFor(model => model.emailConfirmed)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.phoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Functions.functionName)
+            PhoneNumber</br>Confirmed
+        </th>
+        <th>
+            TwoFactor</br>Enabled
+        </th>
+        <th>
+            LockoutEnd</br>DateUtc
+        </th>
+        <th>
+            AccessFailed</br>Count
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            Function
         </th>
         <th></th>
     </tr>
@@ -35,13 +53,31 @@
             @Html.DisplayFor(modelItem => item.userName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.userPassword)
+            @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.userEmail)
+            @Html.DisplayFor(modelItem => item.emailConfirmed)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.phoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNumberConfirmed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.twoFactorEnabled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accessFailedCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Functions.functionName)

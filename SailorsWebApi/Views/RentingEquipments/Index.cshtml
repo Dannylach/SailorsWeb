@@ -18,6 +18,12 @@
             @Html.DisplayNameFor(model => model.rentTimeEnd)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.rentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rentDescription)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SailingEquipment.equipmentName)
         </th>
         <th>
@@ -33,6 +39,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.rentTimeEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rentDescription)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SailingEquipment.equipmentName)
