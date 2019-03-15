@@ -212,7 +212,8 @@ namespace SailorsWebApi.BLL
 
         #region AddFunctions
 
-        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, string phoneNumber, int functionId, string name, string surname)
+        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
+            bool twoFactorEnabled, DateTime LookuotEndDateUtc, int accessFailedCount, int functionId, string name, string surname)
         {
             try
             {
@@ -222,7 +223,13 @@ namespace SailorsWebApi.BLL
                     userName = userName,
                     passwordHash = userPassword,
                     email = userEmail,
+                    emailConfirmed = emailConfirmed,
+                    securityStamp = securityStamp,
                     phoneNumber = phoneNumber,
+                    phoneNumberConfirmed = phoneNumberConfirmed,
+                    twoFactorEnabled = twoFactorEnabled,
+                    LockoutEndDateUtc = LookuotEndDateUtc,
+                    accessFailedCount = accessFailedCount,
                     functionId = functionId,
                     Name = name,
                     Surname = surname
@@ -255,7 +262,8 @@ namespace SailorsWebApi.BLL
 
         #region UpdateFunctions
 
-        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userEmail, string phoneNumber, int functionId, string name, string surname)
+        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
+            bool twoFactorEnabled, DateTime LookuotEndDateUtc, int accessFailedCount, int functionId, string name, string surname)
         {
             try
             {
@@ -263,8 +271,15 @@ namespace SailorsWebApi.BLL
                 {
                     userId = userId,
                     userName = userName,
+                    passwordHash = userPassword,
                     email = userEmail,
+                    emailConfirmed = emailConfirmed,
+                    securityStamp = securityStamp,
                     phoneNumber = phoneNumber,
+                    phoneNumberConfirmed = phoneNumberConfirmed,
+                    twoFactorEnabled = twoFactorEnabled,
+                    LockoutEndDateUtc = LookuotEndDateUtc,
+                    accessFailedCount = accessFailedCount,
                     functionId = functionId,
                     Name = name,
                     Surname = surname

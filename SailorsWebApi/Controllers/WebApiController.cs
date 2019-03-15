@@ -3,6 +3,7 @@ using System.Net;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
+using SailorsWebApi.BLL;
 using SailorsWebApi.BLL_Interfaces;
 using SailorsWebApi.Models;
 
@@ -125,18 +126,22 @@ namespace SailorsWebApi.Controllers
 
         [HttpGet]
         [Route("api/webapi/adduser")]
-        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, string phoneNumber, string name, string surname, int functionId = 1)
+        public IHttpActionResult AddUser(string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
+            bool twoFactorEnabled, DateTime LookuotEndDateUtc, string name, string surname, int accessFailedCount = 0, int functionId = 0)
         {
-            var response = usersServices.AddUser(userName, userPassword, userEmail, phoneNumber, functionId, name, surname);
+            var response = usersServices.AddUser(userName, userPassword, userEmail, emailConfirmed, securityStamp, phoneNumber, phoneNumberConfirmed,
+            twoFactorEnabled, LookuotEndDateUtc, accessFailedCount, functionId, name, surname);
             if (response.ResultType) return Ok(response);
             return Content(HttpStatusCode.BadRequest, response);
         }
 
         [HttpGet]
         [Route("api/webapi/updateuser")]
-        public IHttpActionResult UpdateUser(int userId, string userName, string userEmail, string phoneNumber, int functionId, string name, string surname)
+        public IHttpActionResult UpdateUser(int userId, string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
+            bool twoFactorEnabled, DateTime LookuotEndDateUtc, string name, string surname, int accessFailedCount, int functionId)
         {
-            var response = usersServices.UpdateUser(userId, userName, userEmail, phoneNumber, functionId, name, surname);
+            var response = usersServices.UpdateUser(userId, userName, userPassword, userEmail, emailConfirmed, securityStamp, phoneNumber, phoneNumberConfirmed,
+                twoFactorEnabled, LookuotEndDateUtc, accessFailedCount, functionId, name, surname);
             if (response.ResultType) return Ok(response);
             return Content(HttpStatusCode.BadRequest, response);
         }
