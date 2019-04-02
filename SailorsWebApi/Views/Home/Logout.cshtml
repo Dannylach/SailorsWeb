@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Logout";
+}
+
+<h2>Logout</h2>
+<div>
+    <div>
+        <p>Czy jesteś pewien, że chcesz się wylogować?</p>
+    </div>
+    <div>
+        <p>
+            @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("Affirmation", 1, new { @class = "hiddencss"})
+                <input type="submit" value="Wyloguj"/>
+            }
+        </p>
+        <p>
+            @Html.ActionLink("Wróć do strony głównej bez wylogowania.", "Index", "Home")
+        </p>
+    </div>
+</div>

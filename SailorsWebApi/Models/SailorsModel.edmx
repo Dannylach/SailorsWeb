@@ -70,13 +70,7 @@
           <Property Name="userName" Type="nchar" MaxLength="255" Nullable="false" />
           <Property Name="passwordHash" Type="nchar" MaxLength="255" />
           <Property Name="email" Type="nchar" MaxLength="255" />
-          <Property Name="emailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="securityStamp" Type="nchar" MaxLength="255" />
           <Property Name="phoneNumber" Type="nchar" MaxLength="255" />
-          <Property Name="phoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="twoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="accessFailedCount" Type="int" Nullable="false" />
           <Property Name="functionId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="255" />
           <Property Name="Surname" Type="nchar" MaxLength="255" />
@@ -319,13 +313,7 @@
           <Property Name="userName" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="passwordHash" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="emailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="securityStamp" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="phoneNumber" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="phoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="twoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="accessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="functionId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
           <Property Name="Surname" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
@@ -456,13 +444,7 @@
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="functionId" ColumnName="functionId" />
-                <ScalarProperty Name="accessFailedCount" ColumnName="accessFailedCount" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="twoFactorEnabled" ColumnName="twoFactorEnabled" />
-                <ScalarProperty Name="phoneNumberConfirmed" ColumnName="phoneNumberConfirmed" />
                 <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-                <ScalarProperty Name="securityStamp" ColumnName="securityStamp" />
-                <ScalarProperty Name="emailConfirmed" ColumnName="emailConfirmed" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
                 <ScalarProperty Name="userName" ColumnName="userName" />

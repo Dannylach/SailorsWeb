@@ -1,0 +1,45 @@
+﻿@model SailorsWebApi.Models.Users  
+  
+@{  
+    ViewBag.Title = "Login";  
+}  
+  
+
+<div class="row">
+    <div class="">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            <fieldset>
+                <legend>Zaloguj się</legend>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (@ViewBag.Message != null)
+                {
+                    <div style="border: 1px solid red">
+                        @ViewBag.Message
+                    </div>
+                }
+                <table>
+                    <tr>
+                        <td>Nazwa użytkownika:</td>
+                        <td>@Html.TextBoxFor(a => a.userName)</td>
+                        <td>@Html.ValidationMessageFor(a => a.userName)</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Hasło:</td>
+                        <td>@Html.PasswordFor(a => a.passwordHash)</td>
+                        <td>@Html.ValidationMessageFor(a => a.passwordHash)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Zaloguj" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </fieldset>
+        }
+    </div>
+</div>

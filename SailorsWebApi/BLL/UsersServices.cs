@@ -206,14 +206,18 @@ namespace SailorsWebApi.BLL
             }
         }
 
+        public string GetFunctionById(int functionId)
+        {
+            return functionsRepository.GetById(functionId);
+        }
+
         #endregion
 
         #endregion
 
         #region AddFunctions
 
-        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
-            bool twoFactorEnabled, DateTime LookuotEndDateUtc, int accessFailedCount, int functionId, string name, string surname)
+        public ResponseWrapper<object> AddUser(string userName, string userPassword, string userEmail, string phoneNumber, int functionId, string name, string surname)
         {
             try
             {
@@ -221,15 +225,9 @@ namespace SailorsWebApi.BLL
                 {
                     userId = GetFreeId(),
                     userName = userName,
-                    passwordHash = userPassword,
+                    passwordHash = userPassword.Trim(' '),
                     email = userEmail,
-                    emailConfirmed = emailConfirmed,
-                    securityStamp = securityStamp,
                     phoneNumber = phoneNumber,
-                    phoneNumberConfirmed = phoneNumberConfirmed,
-                    twoFactorEnabled = twoFactorEnabled,
-                    LockoutEndDateUtc = LookuotEndDateUtc,
-                    accessFailedCount = accessFailedCount,
                     functionId = functionId,
                     Name = name,
                     Surname = surname
@@ -244,6 +242,21 @@ namespace SailorsWebApi.BLL
             }
         }
 
+        public ResponseWrapper<object> AddUser(Users user)
+        {
+            try
+            {
+                user.passwordHash.Trim(' ');
+                userRepository.AddUser(user);
+                userRepository.Save();
+                return new ResponseWrapper<object>("OK", true);
+            }
+            catch (Exception e)
+            {
+                return new ResponseWrapper<object>(e.Message, false);
+            }
+        }
+        
         public ResponseWrapper<object> AddFunction(string functionName)
         {
             try
@@ -262,8 +275,7 @@ namespace SailorsWebApi.BLL
 
         #region UpdateFunctions
 
-        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userPassword, string userEmail, bool emailConfirmed, string securityStamp, string phoneNumber, bool phoneNumberConfirmed,
-            bool twoFactorEnabled, DateTime LookuotEndDateUtc, int accessFailedCount, int functionId, string name, string surname)
+        public ResponseWrapper<object> UpdateUser(int userId, string userName, string userPassword, string userEmail, string phoneNumber, int functionId, string name, string surname)
         {
             try
             {
@@ -271,15 +283,9 @@ namespace SailorsWebApi.BLL
                 {
                     userId = userId,
                     userName = userName,
-                    passwordHash = userPassword,
+                    passwordHash = userPassword.Trim(' '),
                     email = userEmail,
-                    emailConfirmed = emailConfirmed,
-                    securityStamp = securityStamp,
                     phoneNumber = phoneNumber,
-                    phoneNumberConfirmed = phoneNumberConfirmed,
-                    twoFactorEnabled = twoFactorEnabled,
-                    LockoutEndDateUtc = LookuotEndDateUtc,
-                    accessFailedCount = accessFailedCount,
                     functionId = functionId,
                     Name = name,
                     Surname = surname

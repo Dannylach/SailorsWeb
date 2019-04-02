@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8fec3727ab754c80a246761a062b4a6e" Name="Diagram1" ZoomLevel="167">
+      <Diagram DiagramId="8fec3727ab754c80a246761a062b4a6e" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="HowDatabaseModel.EquipmentTypes" Width="1.5" PointX="7.375" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HowDatabaseModel.Functions" Width="1.5" PointX="1" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="HowDatabaseModel.Posts" Width="1.5" PointX="1" PointY="1" IsExpanded="true" />
@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="HowDatabaseModel.RentingEquipment" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="HowDatabaseModel.FK__RentingEq__equip__06CD04F7" />
         <AssociationConnector Association="HowDatabaseModel.FK__SailingEq__equip__2739D489" />
-        <EntityTypeShape EntityType="HowDatabaseModel.Users" Width="1.5" PointX="3.25" PointY="1" />
+        <EntityTypeShape EntityType="HowDatabaseModel.Users" Width="1.5" PointX="3.25" PointY="2.125" />
         <AssociationConnector Association="HowDatabaseModel.FK__Users__functionI__55F4C372" />
         <AssociationConnector Association="HowDatabaseModel.FK__HabourRen__rente__56E8E7AB" />
         <AssociationConnector Association="HowDatabaseModel.FK__Posts__userPosti__540C7B00" />

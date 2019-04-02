@@ -18,16 +18,39 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("EquipmentTypes", "Index", "EquipmentTypes")</li>
-                    <li>@Html.ActionLink("Functions", "Index", "Functions")</li>
-                    <li>@Html.ActionLink("HabourRentings", "Index", "HabourRentings")</li>
-                    <li>@Html.ActionLink("RentingEquipments", "Index", "RentingEquipments")</li>
-                    <li>@Html.ActionLink("SailingEquipments", "Index", "SailingEquipments")</li>
-                    <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                </ul>
+                @if (Session["Function"] == null)
+                {
+                    <ul class="nav navbar-nav">
+
+                        <li>@Html.ActionLink("Strona Główna", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Zaloguj", "Login", "Home")</li>
+                    </ul>
+                }
+                @if (Session["Function"] != null && Session["Function"].ToString() == "1")
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Strona Główna", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Wynajem Ośrodka", "Index", "HabourRentings")</li>
+                        <li>@Html.ActionLink("Wynajem Jednostek", "Index", "RentingEquipments")</li>
+                        <li>@Html.ActionLink("Moje konto", "Details", "Users")</li>
+                        <li>@Html.ActionLink("Wyloguj", "Logout", "Home")</li>
+                    </ul>
+                }
+                @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Strona Główna", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Typy Ekwipunku", "Index", "EquipmentTypes")</li>
+                        <li>@Html.ActionLink("Funkcje", "Index", "Functions")</li>
+                        <li>@Html.ActionLink("Wynajem Ośrodka", "Index", "HabourRentings")</li>
+                        <li>@Html.ActionLink("Wynajem Jednostek", "Index", "RentingEquipments")</li>
+                        <li>@Html.ActionLink("Ekwipunek Żeglarski", "Index", "SailingEquipments")</li>
+                        <li>@Html.ActionLink("Posty", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Użytkownicy", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Moje konto", "Details", "Users")</li>
+                        <li>@Html.ActionLink("Wyloguj", "Logout", "Home")</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>

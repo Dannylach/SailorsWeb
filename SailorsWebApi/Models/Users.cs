@@ -26,13 +26,7 @@ namespace SailorsWebApi.Models
         public string userName { get; set; }
         public string passwordHash { get; set; }
         public string email { get; set; }
-        public bool emailConfirmed { get; set; }
-        public string securityStamp { get; set; }
         public string phoneNumber { get; set; }
-        public bool phoneNumberConfirmed { get; set; }
-        public bool twoFactorEnabled { get; set; }
-        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
-        public int accessFailedCount { get; set; }
         public int functionId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

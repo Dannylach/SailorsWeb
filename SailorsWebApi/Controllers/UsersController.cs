@@ -17,6 +17,13 @@ namespace SailorsWebApi.Controllers
         // GET: Users
         public ActionResult Index()
         {
+            int auth = -1;
+            if (Session.Count != 0)
+            {
+                var temp = Int16.Parse(Session["Function"].ToString());
+                auth = db.Functions.FirstOrDefault(x => x.functionId == temp).functionId;
+            }
+            if (auth != 0) return RedirectToAction("Index", "Home");
             var users = db.Users.Include(u => u.Functions);
             return View(users.ToList());
         }
@@ -24,9 +31,20 @@ namespace SailorsWebApi.Controllers
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
+            int auth = -1;
+            if (Session.Count != 0 && Session["Function"] != null)
+            {
+                var temp = Int16.Parse(Session["Function"].ToString());
+                auth = db.Functions.FirstOrDefault(x => x.functionId == temp).functionId;
+            }
+
+            if (auth == -1) return RedirectToAction("Login", "Home");
+
+            if (auth != 0) id = Int16.Parse(Session["UserId"].ToString());
+
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                id = Int16.Parse(Session["UserId"].ToString());
             }
             Users users = db.Users.Find(id);
             if (users == null)
@@ -64,6 +82,18 @@ namespace SailorsWebApi.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            int auth = -1;
+            if (Session.Count != 0 && Session["Function"] != null)
+            {
+                var temp = Int16.Parse(Session["Function"].ToString());
+                auth = db.Functions.FirstOrDefault(x => x.functionId == temp).functionId;
+            }
+
+            if (auth == -1) return RedirectToAction("Login", "Home");
+
+            if (auth != 0) id = Int16.Parse(Session["UserId"].ToString());
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
