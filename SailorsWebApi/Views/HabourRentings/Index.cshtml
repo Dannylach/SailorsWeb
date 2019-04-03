@@ -4,27 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Wynajem terenu ośrodka</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @if (Session["Function"] != null)
+    {
+        @Html.ActionLink("Utwórz nowe", "Create")
+    }
+    </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.rentTimeStart)
+            Nazwa imprezy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.rentTimeEnd)
+            Czas rozpoczęcia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.rentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rentDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.userName)
+            Czas zakończenia
         </th>
         <th></th>
     </tr>
@@ -32,24 +29,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.rentName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.rentTimeStart)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.rentTimeEnd)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.rentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rentDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Users.userName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.rentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.rentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.rentId })
+            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+            {
+                @Html.ActionLink("Edytuj |", "Edit", new { id = item.rentId })
+            }
+            @Html.ActionLink(" Szczegóły ", "Details", new { id = item.rentId })
+            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+            {
+                @Html.ActionLink("| Usuń", "Delete", new { id = item.rentId })
+            }
         </td>
     </tr>
 }

@@ -4,30 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Wynajem terenu ośrodka</h2>
 
 <div>
-    <h4>HabourRenting</h4>
+    <h4>Szczegóły</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.rentTimeStart)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.rentTimeStart)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.rentTimeEnd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.rentTimeEnd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.rentName)
+            NAzwa imprezy
         </dt>
 
         <dd>
@@ -35,24 +19,45 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.rentDescription)
+            Czas rozpoczęcia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentTimeStart)
+        </dd>
+
+        <dt>
+            Czas zakończenia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentTimeEnd)
+        </dd>
+
+        <dt>
+            Opis imprezy
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.rentDescription)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.userName)
-        </dt>
+        @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+        {
+            <dt>
+                Nazwa wynajmującego
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.userName)
-        </dd>
-
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Users.userName)
+            </dd>
+        }
+        </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.rentId }) |
-    @Html.ActionLink("Back to List", "Index")
+@if (Session["Function"] != null && Session["Function"].ToString() == "0")
+{
+    @Html.ActionLink("Edytuj", "Edit", new {id = Model.rentId}) 
+}
+    @Html.ActionLink("Wróć do listy", "Index")
 </p>
