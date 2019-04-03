@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Sprzęt do wynajęcia</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>SailingEquipment</h4>
+        <h4>SailingEquEdytujipment</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.equipmentId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.equipmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nazwa sprzętu", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.equipmentName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.equipmentName, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.equipmentType, "equipmentType", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Typ sprzętu", "equipmentType", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("equipmentType", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.equipmentType, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-default" />
             </div>
         </div>
     </div>

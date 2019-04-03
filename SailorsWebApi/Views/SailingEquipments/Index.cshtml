@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Sprzęt do wynajęcia</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.equipmentName)
+            Nazwa sprzętu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EquipmentTypes.typeName)
+            Typ sprzętu
         </th>
         <th></th>
     </tr>
@@ -28,11 +28,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.EquipmentTypes.typeName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.equipmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.equipmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.equipmentId })
-        </td>
+        <t>
+            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+            {
+                @Html.ActionLink("Edtuj", "Edit", new {id = item.equipmentId}) |
+            }
+            @Html.ActionLink("Szczegóły", "Details", new {id = item.equipmentId}) |
+            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+            {
+                @Html.ActionLink("Usuń", "Delete", new {id = item.equipmentId})
+            }
+        </t>
     </tr>
 }
 

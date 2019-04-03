@@ -4,21 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Użytkownicy</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Utwórz", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.userName)
+            Nazwa użytkownika
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            Adres e-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phoneNumber)
+            Numer telefonu
         </th>
         <th></th>
     </tr>
@@ -35,9 +35,15 @@
             @Html.DisplayFor(modelItem => item.phoneNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userId })
+        @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+        {
+            @Html.ActionLink("Edytuj |", "Edit", new {id = item.userId}) 
+        }
+            @Html.ActionLink("Szczegóły", "Details", new {id = item.userId}) 
+        @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+        {
+            @Html.ActionLink("| Usuń", "Delete", new {id = item.userId})
+        }
         </td>
     </tr>
 }

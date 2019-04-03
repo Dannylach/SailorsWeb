@@ -11,7 +11,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.rentTimeStart)
+            Nazwa rezerwacji
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rentName)
+        </dd>
+        
+        <dt>
+            Czas rozpoczęcia
         </dt>
 
         <dd>
@@ -19,23 +27,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.rentTimeEnd)
+            Czas zakończenia
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.rentTimeEnd)
         </dd>
-
+                
         <dt>
-            @Html.DisplayNameFor(model => model.rentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.rentName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.rentDescription)
+            Opis rezerwacji
         </dt>
 
         <dd>
@@ -43,13 +43,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SailingEquipment.equipmentName)
+            Sprzęt rezerwowany
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SailingEquipment.equipmentName)
         </dd>
-
+        
+    @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+    {
         <dt>
             @Html.DisplayNameFor(model => model.Users.userName)
         </dt>
@@ -57,10 +59,13 @@
         <dd>
             @Html.DisplayFor(model => model.Users.userName)
         </dd>
-
+    }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.rentId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (Session["Function"] != null && Session["Function"].ToString() == "0")
+    {
+        @Html.ActionLink("Edytuj", "Edit", new {id = Model.rentId})
+    }
+    @Html.ActionLink("Wróć do listy", "Index")
 </p>
