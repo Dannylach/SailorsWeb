@@ -85,11 +85,21 @@ namespace SailorsWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd,rentName,rentDescription")] RentingEquipment rentingEquipment)
+        public ActionResult Edit([Bind(Include = "rentId,renterId,equipmentId,rentTimeStart,rentTimeEnd,rentName,rentDescription")] RentModel rentingEquipment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rentingEquipment).State = EntityState.Modified;
+                var edited = new RentingEquipment
+                {
+                    rentId = rentingEquipment.renterId,
+                    renterId = rentingEquipment.renterId,
+                    equipmentId = rentingEquipment.equipmentId,
+                    rentName = rentingEquipment.rentName,
+                    rentTimeStart = rentingEquipment.rentTimeStart,
+                    rentTimeEnd = rentingEquipment.rentTimeEnd,
+                    rentDescription = rentingEquipment.rentDescription
+                };
+                db.Entry(edited).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

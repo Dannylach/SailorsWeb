@@ -24,7 +24,17 @@
             Jedną z większych imprez jakie odbywały się na terenie ośrodka była Trzciamajka, to tutaj odbyły się pierwsze edycje
             tego festiwalu. Cykliczną imprezą są okręgowe regaty PZŻ.
         </p>
-        <p>@Html.ActionLink("Rezerwuj ośrodek", "Create", "HabourRentings")</p>
+        <p>
+            @if (Session["Function"] != null)
+            {
+                @Html.ActionLink("Rezerwuj ośrodek", "Create", "HabourRentings")
+            }
+
+            @if (Session["Function"] == null)
+            {
+                @Html.ActionLink("Rezerwuj ośrodek", "Login", "Home")
+            }
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Rezerwacja sprzętu na ośrodku</h2>
@@ -32,6 +42,16 @@
             Na terenie ośrodka znajdują się cztery żaglówki klasy Omega, na jednostkach tego typu może pływac jednocześnie 6  osób.
             Innym jachtem jest Tango 720, jacht kabinowy mieszczący maksymalnie 6 osób. Poza żaglówkami znajdują się również kajaki.
         </p>
-        <p>@Html.ActionLink("Rezerwuj sprzęt", "Create", "RentingEquipments")</p>
+        <p>
+            @if (Session["Function"] != null)
+            {
+                @Html.ActionLink("Rezerwuj sprzęt", "Create", "RentingEquipments")
+            }
+
+            @if (Session["Function"] == null)
+            {
+                @Html.ActionLink("Rezerwuj sprzęt", "Login", "Home")
+            }
+        </p>
     </div>
 </div>

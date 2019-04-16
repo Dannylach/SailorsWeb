@@ -7,7 +7,10 @@
 <h2>Wynajem sprzętu</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (Session["Function"] != null)
+    {
+        @Html.ActionLink("Utwórz nowe", "Create")
+    }
 </p>
 <table class="table">
     <tr>
