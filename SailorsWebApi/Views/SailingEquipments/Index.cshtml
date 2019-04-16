@@ -7,7 +7,7 @@
 <h2>Sprzęt do wynajęcia</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Utwórz nowe", "Create")
 </p>
 <table class="table">
     <tr>
@@ -28,17 +28,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.EquipmentTypes.typeName)
         </td>
-        <t>
-            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
-            {
+        <td>
                 @Html.ActionLink("Edtuj", "Edit", new {id = item.equipmentId}) |
-            }
             @Html.ActionLink("Szczegóły", "Details", new {id = item.equipmentId}) |
-            @if (Session["Function"] != null && Session["Function"].ToString() == "0")
-            {
                 @Html.ActionLink("Usuń", "Delete", new {id = item.equipmentId})
-            }
-        </t>
+        </td>
     </tr>
 }
 

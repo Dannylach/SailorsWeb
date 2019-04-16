@@ -4,7 +4,11 @@
 
 <div class="jumbotron">
     <h1>Harcerski Ośrodek Wodny</h1>
+<<<<<<< HEAD
     <p class="lead">w Trzciance</p>
+=======
+    <p class="lead"> w Trzciance</p>
+>>>>>>> b9e753e1b3bf9c0809299a0de25c1a2a6157943b
     <p><a href="https://zeglarze.trz.pl" class="btn btn-primary btn-lg">Dodatkowe informacje o ośrodku &raquo;</a></p>
 </div>
 
@@ -12,9 +16,15 @@
     <div class="col-md-4">
         <h2>O ośrodku</h2>
         <p>
+<<<<<<< HEAD
             Harcerski Ośrodek Wodny w Trzciance działa od 1972 roku. Swoje początki ma w 15 Harcerskiej Drużynie Wodnej 
             dzialającej przy Międzyszkolnym Klubie Sportowym. Po rozwiązaniu Klubu żeglarze przeszli do 
             Młodzieżowego Domu Kultury w Trzciance i od tego momentu działają jako Harceski Ośrodek Wodny przy MDK w Trzciance. 
+=======
+            Harcerski Ośrodek Wodny w Trzciance działa od 1972 roku. Swoje początki ma w 15 Harcerskiej Drużynie Wodnej
+            dzialającej przy Międzyszkolnym Klubie Sportowym. Po rozwiązaniu Klubu żeglarze przeszli do
+            Młodzieżowego Domu Kultury w Trzciance i od tego momentu działają jako Harceski Ośrodek Wodny przy MDK w Trzciance.
+>>>>>>> b9e753e1b3bf9c0809299a0de25c1a2a6157943b
         </p>
     </div>
     <div class="col-md-4">
@@ -24,7 +34,21 @@
             Jedną z większych imprez jakie odbywały się na terenie ośrodka była Trzciamajka, to tutaj odbyły się pierwsze edycje
             tego festiwalu. Cykliczną imprezą są okręgowe regaty PZŻ.
         </p>
+<<<<<<< HEAD
         <p></p>
+=======
+        <p>
+            @if (Session["Function"] != null)
+            {
+                @Html.ActionLink("Rezerwuj ośrodek", "Create", "HabourRentings")
+            }
+
+            @if (Session["Function"] == null)
+            {
+                @Html.ActionLink("Rezerwuj ośrodek", "Login", "Home")
+            }
+        </p>
+>>>>>>> b9e753e1b3bf9c0809299a0de25c1a2a6157943b
     </div>
     <div class="col-md-4">
         <h2>Rezerwacja sprzętu na ośrodku</h2>
@@ -32,6 +56,20 @@
             Na terenie ośrodka znajdują się cztery żaglówki klasy Omega, na jednostkach tego typu może pływac jednocześnie 6  osób.
             Innym jachtem jest Tango 720, jacht kabinowy mieszczący maksymalnie 6 osób. Poza żaglówkami znajdują się również kajaki.
         </p>
+<<<<<<< HEAD
         <p></p>
+=======
+        <p>
+            @if (Session["Function"] != null)
+            {
+                @Html.ActionLink("Rezerwuj sprzęt", "Create", "RentingEquipments")
+            }
+
+            @if (Session["Function"] == null)
+            {
+                @Html.ActionLink("Rezerwuj sprzęt", "Login", "Home")
+            }
+        </p>
+>>>>>>> b9e753e1b3bf9c0809299a0de25c1a2a6157943b
     </div>
 </div>
